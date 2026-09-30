@@ -87,17 +87,13 @@ body {
   font-family: var(--f);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
 }
 
 /* ---------- top ---------- */
 .top {
-  width: 100%;
-  max-width: 760px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 18px 24px;
+  padding: 18px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,23 +106,20 @@ body {
 
 /* ---------- hero ---------- */
 .hero {
-  width: 100%;
-  max-width: 760px;
-  flex: 1;
+  max-width: 980px;
   margin: 0 auto;
-  padding: clamp(24px, 4vh, 48px) 24px 32px;
+  padding: clamp(28px, 7vw, 72px) 16px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  gap: 18px;
+  gap: 22px;
   overflow-x: clip;
 }
 h1 {
   margin: 0;
   font-weight: 700;
-  font-size: clamp(2.2rem, 10vw, 2.9rem);
+  font-size: clamp(2.3rem, 7vw, 5.2rem);
   line-height: 1.02;
   letter-spacing: -0.045em;
   max-width: 13ch;
@@ -139,9 +132,9 @@ h1 {
   color: transparent;
   white-space: nowrap;
 }
-.sub { margin: 0; font-size: 1.15rem; color: var(--muted); }
+.sub { margin: 0; font-size: clamp(1.15rem, 2.2vw, 1.45rem); color: var(--muted); }
 
-.orb-box { position: relative; width: min(320px, 78vw); aspect-ratio: 1; max-width: 100%; margin: 10px 0; }
+.orb-box { position: relative; width: min(400px, 78vw); aspect-ratio: 1; max-width: 100%; margin: 10px 0; }
 .orbit { position: absolute; inset: 0; animation: turn 10s linear infinite; }
 .orbit.rev { animation-direction: reverse; }
 .halo {
@@ -221,10 +214,9 @@ h1 {
 .btn:focus-visible { outline: 2px solid var(--icon); outline-offset: 3px; }
 
 .foot {
-  width: 100%;
-  max-width: 760px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 24px 24px 32px;
+  padding: 24px 16px 32px;
   text-align: center;
   font-size: 13px;
   color: var(--muted);
@@ -235,22 +227,21 @@ h1 {
 
 
 /* ---------- phone layout ---------- */
-@media (max-width: 600px) {
-  .top, .hero, .foot { max-width: 480px; }
-  .top { padding: 18px 16px; }
-  .hero { gap: 18px; padding: 28px 16px 24px; }
-  .foot { padding: 24px 16px 32px; }
-  .goals { gap: 7px; }
-  .goal { padding: 8px 12px; font-size: 13px; }
-  .cta-bar {
-    position: sticky;
-    bottom: 0;
-    z-index: 2;
-    width: calc(100% + 32px);
-    margin: -6px -16px 0;
-    padding: 18px 16px calc(14px + env(safe-area-inset-bottom, 0px));
-    background: linear-gradient(to top, var(--bg) 62%, transparent);
-  }
+.top, .hero, .foot { max-width: 480px; }
+h1 { font-size: clamp(2.2rem, 10vw, 2.9rem); }
+.sub { font-size: 1.15rem; }
+.orb-box { width: min(320px, 78vw); }
+.hero { gap: 18px; padding-bottom: 24px; }
+.goals { gap: 7px; }
+.goal { padding: 8px 12px; font-size: 13px; }
+.cta-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  width: calc(100% + 32px);
+  margin: -6px -16px 0;
+  padding: 18px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to top, var(--bg) 62%, transparent);
 }
 
 
