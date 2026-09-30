@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one centred column — headline, subline, the living orb, goal chips, closing line and
+   the start button; on phones the button stays pinned to the bottom until it reaches its place. */
+:root {
+  --bg: #ffffff;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #d2d2d7;
+  --line-hover: #86868b;
+  --chip-bg: #ffffff;
+  --chip-on-bg: #1d1d1f;
+  --chip-on-ink: #ffffff;
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --accent-ink: #ffffff;
+  --icon: #0071e3;
+  --btn-shadow: rgba(0, 113, 227, 0.32);
+
+  --c1: rgba(127, 211, 251, 0.62);
+  --c2: rgba(140, 207, 249, 0.50);
+  --c3: rgba(111, 210, 251, 0.46);
+  --cs: rgba(200, 236, 252, 0.10);
+  --blend: multiply;
+
+  --f: "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000;
+    --ink: #f5f5f7;
+    --muted: #a1a1a6;
+    --line: #3a3a3c;
+    --line-hover: #6e6e73;
+    --chip-bg: #1c1c1e;
+    --chip-on-bg: #f5f5f7;
+    --chip-on-ink: #000000;
+    --accent: #0071e3;
+    --accent-hover: #1a82f0;
+    --accent-ink: #ffffff;
+    --icon: #2997ff;
+    --btn-shadow: rgba(0, 113, 227, 0.5);
+    --c1: rgba(20, 150, 255, 0.55);
+    --c2: rgba(0, 110, 255, 0.50);
+    --c3: rgba(40, 200, 255, 0.42);
+    --cs: rgba(40, 120, 255, 0.04);
+    --blend: screen;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --ink: #f5f5f7;
+  --muted: #a1a1a6;
+  --line: #3a3a3c;
+  --line-hover: #6e6e73;
+  --chip-bg: #1c1c1e;
+  --chip-on-bg: #f5f5f7;
+  --chip-on-ink: #000000;
+  --accent: #0071e3;
+  --accent-hover: #1a82f0;
+  --accent-ink: #ffffff;
+  --icon: #2997ff;
+  --btn-shadow: rgba(0, 113, 227, 0.5);
+  --c1: rgba(20, 150, 255, 0.55);
+  --c2: rgba(0, 110, 255, 0.50);
+  --c3: rgba(40, 200, 255, 0.42);
+  --cs: rgba(40, 120, 255, 0.04);
+  --blend: screen;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------- top ---------- */
+.top {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); font-weight: 700; font-size: 18px; letter-spacing: -0.02em; text-decoration: none; }
+.dot { width: 16px; height: 16px; border-radius: 50%; flex: none; background: linear-gradient(225deg, #3ddcfb, #0474ff 55%, #0050ff); }
+.top-tag { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; }
+.brand:focus-visible, .top-tag:focus-visible { outline: 2px solid var(--icon); outline-offset: 3px; }
+
+/* ---------- hero ---------- */
+.hero {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(28px, 7vw, 72px) 16px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 22px;
+  overflow-x: clip;
+}
+h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(2.3rem, 7vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  max-width: 13ch;
+  text-wrap: balance;
+}
+.grad {
+  background: linear-gradient(225deg, #19b6fc, #0a6cff 60%, #0050ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+.sub { margin: 0; font-size: clamp(1.15rem, 2.2vw, 1.45rem); color: var(--muted); }
+
+.orb-box { position: relative; width: min(400px, 78vw); aspect-ratio: 1; max-width: 100%; margin: 10px 0; }
+.orbit { position: absolute; inset: 0; animation: turn 10s linear infinite; }
+.orbit.rev { animation-direction: reverse; }
+.halo {
+  position: absolute;
+  left: calc(50% + var(--dx));
+  top: calc(50% + var(--dy));
+  width: var(--w);
+  height: var(--h);
+  margin-left: calc(var(--w) / -2);
+  margin-top: calc(var(--h) / -2);
+  border-radius: 50%;
+  background: linear-gradient(37deg, var(--cs) 8%, var(--hc) 92%);
+  mix-blend-mode: var(--blend);
+  rotate: var(--a0);
+  animation: spin 10s linear infinite, breathe 2.5s ease-in-out infinite alternate;
+  animation-delay: 0s, var(--ph);
+}
+.halo.rev { animation-direction: reverse, alternate; }
+.hl1 { --w: 78%;   --h: 72%;   --dx: 0%;    --dy: -1.5%; --a0: 20deg;  --hc: var(--c1); --ph: 0s; }
+.hl2 { --w: 84.6%; --h: 73.3%; --dx: 1%;    --dy: 1.33%; --a0: 150deg; --hc: var(--c2); --ph: -0.7s; }
+.hl3 { --w: 80.6%; --h: 68%;   --dx: 1.33%; --dy: 1.66%; --a0: 260deg; --hc: var(--c3); --ph: -1.6s; }
+.core {
+  position: absolute;
+  inset: 17%;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: pulse 2.5s ease-in-out infinite alternate;
+}
+.core::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background:
+    radial-gradient(circle at 40% 60%, #0050ff 0%, transparent 52%),
+    linear-gradient(225deg, #3ddcfb 16%, #12a8fd 36%, #0474ff 60%, #0050ff 86%);
+  animation: sway 5s ease-in-out infinite alternate;
+}
+
+.goals { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 600px; }
+.goal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--chip-bg);
+  color: var(--ink);
+  font: 500 13.5px/1.2 var(--f);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color .18s, border-color .18s, color .18s;
+}
+.goal .ring { display: contents; }
+.goal svg { width: 15px; height: 15px; flex: none; color: var(--icon); transition: color .18s; }
+.goal:hover { border-color: var(--line-hover); }
+.goal[aria-pressed="true"] { background: var(--chip-on-bg); color: var(--chip-on-ink); border-color: var(--chip-on-bg); }
+.goal[aria-pressed="true"] svg { color: var(--chip-on-ink); }
+
+.cta-copy { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 14px; }
+.cta-text { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
+.cta-sub { margin: 0; font-size: 15.5px; color: var(--muted); text-wrap: balance; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: 600 16px/1 var(--f);
+  text-decoration: none;
+  box-shadow: 0 12px 30px -14px var(--btn-shadow);
+  transition: background-color .18s, transform .18s;
+}
+.btn svg { width: 17px; height: 17px; transition: transform .2s; }
+.btn:hover { background: var(--accent-hover); }
+.btn:hover svg { transform: translateX(3px); }
+.btn small { font-weight: 400; font-size: 14px; opacity: .85; }
+.goal:focus-visible, .btn:focus-visible { outline: 2px solid var(--icon); outline-offset: 3px; }
+
+.foot {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- entrance: headline first ---------- */
+.in { animation: rise .7s cubic-bezier(.2, .8, .2, 1) both; animation-delay: var(--d, 0s); }
+
+
+/* ---------- phone layout ---------- */
+.top, .hero, .foot { max-width: 480px; }
+h1 { font-size: clamp(2.2rem, 10vw, 2.9rem); }
+.sub { font-size: 1.15rem; }
+.orb-box { width: min(320px, 78vw); }
+.hero { gap: 18px; padding-bottom: 24px; }
+.goals { gap: 7px; }
+.goal { padding: 8px 12px; font-size: 13px; }
+.cta-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  width: calc(100% + 32px);
+  margin: -6px -16px 0;
+  padding: 18px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to top, var(--bg) 62%, transparent);
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- motion ---------- */
+@keyframes turn { to { rotate: 360deg; } }
+@keyframes spin { from { rotate: var(--a0); } to { rotate: calc(var(--a0) + 360deg); } }
+@keyframes breathe { from { scale: 0.965; } to { scale: 1.035; } }
+@keyframes pulse { from { scale: 0.978; } to { scale: 1.022; } }
+@keyframes sway { from { rotate: -22deg; } to { rotate: 22deg; } }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="https://t.me/Doirauzbot" target="_blank" rel="noopener noreferrer"><span class="dot" aria-hidden="true"></span>Doira</a>
+  <a class="top-tag" href="https://t.me/Doirauzbot" target="_blank" rel="noopener noreferrer">Telegram bot</a>
+</header>
+
+<main class="hero">
+  <h1 class="in">O‘zingizni <span class="grad">1 daqiqa</span> ichida tanishtiring</h1>
+  <p class="sub in" style="--d:.15s">va o‘zingizga mos doirani toping.</p>
+
+  <div class="orb-box in" style="--d:.3s" aria-hidden="true">
+    <div class="orbit"><div class="halo hl1"></div></div>
+    <div class="orbit rev"><div class="halo hl2 rev"></div></div>
+    <div class="orbit rev"><div class="halo hl3"></div></div>
+    <div class="core"></div>
+  </div>
+
+  <div class="goals in" style="--d:.45s" role="group" aria-label="Maqsadingiz">
+    <button class="goal" id="g-tanishuv" type="button" data-goal="tanishuv" aria-pressed="false"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span><span class="lb">Tanish orttirish</span></button>
+    <button class="goal" id="g-ish" type="button" data-goal="ish" aria-pressed="false"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 12.5h17"/></svg></span><span class="lb">Ish qidirish</span></button>
+    <button class="goal" id="g-xodim" type="button" data-goal="xodim" aria-pressed="false"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8.5" r="3.5"/><path d="M3.5 19.5a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"/></svg></span><span class="lb">Xodim qidirish</span></button>
+    <button class="goal" id="g-investor-izlash" type="button" data-goal="investor_izlash" aria-pressed="false"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.5"/><path d="M5.5 6.5v5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-5M5.5 11.5v5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-5"/></svg></span><span class="lb">Investor qidirish</span></button>
+    <button class="goal" id="g-investor" type="button" data-goal="investor" aria-pressed="false"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18l5.5-5.5 3.5 3.5L20 9"/><path d="M14.5 9H20v5.5"/></svg></span><span class="lb">Investor bo‘lish</span></button>
+  </div>
+
+  <div class="cta-copy in" style="--d:.55s">
+    <p class="cta-text">Maqsadingizga mos insonlar bilan<br><span class="grad">networking quring</span></p>
+  </div>
+  <div class="cta-bar in" style="--d:.6s">
+    <a class="btn" id="startBtn" href="#" target="_blank" rel="noopener">
+      Boshlash <small id="startGoal" hidden></small>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</main>
+
+<footer class="foot">© 2026 Doira · Dumaloq video orqali networking</footer>
+
+<script>
+  // Botning Telegram username'i (@ belgisisiz)
+  const BOT_USERNAME = "Doirauzbot";
+
+  const baseUrl = "https://t.me/" + BOT_USERNAME;
+  const btn = document.getElementById("startBtn");
+  const goalLabel = document.getElementById("startGoal");
+  const goals = [...document.querySelectorAll(".goal")];
+  let goal = null;
+
+  function render() {
+    btn.href = goal ? baseUrl + "?start=" + goal : baseUrl;
+    const picked = goals.find(g => g.dataset.goal === goal);
+    goals.forEach(g => g.setAttribute("aria-pressed", String(g === picked)));
+    goalLabel.hidden = !picked;
+    goalLabel.textContent = picked ? "· " + picked.textContent.trim() : "";
+  }
+  goals.forEach(g => g.addEventListener("click", () => {
+    goal = g.dataset.goal;
+    render();
+    const link = document.createElement("a");
+    link.href = btn.href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.click();
+  }));
+  render();
+</script>
+</body>
+</html>
