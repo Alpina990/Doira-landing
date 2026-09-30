@@ -95,9 +95,9 @@ body {
 /* ---------- top ---------- */
 .top {
   width: 100%;
-  max-width: 1080px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 18px clamp(20px, 4vw, 48px);
+  padding: 18px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,25 +111,25 @@ body {
 /* ---------- hero ---------- */
 .hero {
   width: 100%;
-  max-width: 1080px;
+  max-width: 760px;
   flex: 1;
   margin: 0 auto;
-  padding: 4px clamp(20px, 4vw, 48px);
+  padding: clamp(24px, 4vh, 48px) 24px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 8px;
+  gap: 18px;
   overflow-x: clip;
 }
 h1 {
   margin: 0;
   font-weight: 700;
-  font-size: clamp(2.3rem, min(6.5vw, 6.5vh), 4rem);
+  font-size: clamp(2.2rem, 10vw, 2.9rem);
   line-height: 1.02;
   letter-spacing: -0.045em;
-  max-width: 14ch;
+  max-width: 13ch;
   text-wrap: balance;
 }
 .grad {
@@ -139,9 +139,9 @@ h1 {
   color: transparent;
   white-space: nowrap;
 }
-.sub { margin: 0; font-size: clamp(1.15rem, 1.8vw, 1.65rem); color: var(--muted); }
+.sub { margin: 0; font-size: 1.15rem; color: var(--muted); }
 
-.orb-box { position: relative; width: min(34vw, 38vh, 420px); aspect-ratio: 1; max-width: 100%; margin: 0; }
+.orb-box { position: relative; width: min(320px, 78vw); aspect-ratio: 1; max-width: 100%; margin: 10px 0; }
 .orbit { position: absolute; inset: 0; animation: turn 10s linear infinite; }
 .orbit.rev { animation-direction: reverse; }
 .halo {
@@ -195,7 +195,7 @@ h1 {
 .goal .ring { display: contents; }
 .goal svg { width: 15px; height: 15px; flex: none; color: var(--icon); }
 
-.cta-copy { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.cta-copy { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 14px; }
 .cta-text { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
 .cta-sub { margin: 0; font-size: 15.5px; color: var(--muted); text-wrap: balance; }
 .cta-bar { display: flex; justify-content: center; width: 100%; }
@@ -203,28 +203,28 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  width: min(100%, 420px);
-  min-height: 72px;
-  padding: 20px 46px;
+  gap: 12px;
+  width: min(100%, 280px);
+  min-height: 56px;
+  padding: 17px 36px;
   border-radius: 999px;
   background: var(--accent);
   color: var(--accent-ink);
-  font: 700 22px/1 var(--f);
+  font: 700 21px/1 var(--f);
   text-decoration: none;
   box-shadow: 0 18px 42px -16px var(--btn-shadow);
   transition: background-color .18s, transform .18s;
 }
-.btn svg { width: 24px; height: 24px; transition: transform .2s; }
+.btn svg { width: 20px; height: 20px; transition: transform .2s; }
 .btn:hover { background: var(--accent-hover); }
 .btn:hover svg { transform: translateX(3px); }
 .btn:focus-visible { outline: 2px solid var(--icon); outline-offset: 3px; }
 
 .foot {
   width: 100%;
-  max-width: 1080px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 16px clamp(20px, 4vw, 48px);
+  padding: 24px 24px 32px;
   text-align: center;
   font-size: 13px;
   color: var(--muted);
@@ -237,10 +237,9 @@ h1 {
 /* ---------- phone layout ---------- */
 @media (max-width: 600px) {
   .top, .hero, .foot { max-width: 480px; }
-  h1 { font-size: clamp(2.2rem, 10vw, 2.9rem); }
-  .sub { font-size: 1.15rem; }
-  .orb-box { width: min(320px, 78vw); }
-  .hero { gap: 18px; padding-top: 28px; padding-bottom: 24px; }
+  .top { padding: 18px 16px; }
+  .hero { gap: 18px; padding: 28px 16px 24px; }
+  .foot { padding: 24px 16px 32px; }
   .goals { gap: 7px; }
   .goal { padding: 8px 12px; font-size: 13px; }
   .cta-bar {
@@ -252,13 +251,6 @@ h1 {
     padding: 18px 16px calc(14px + env(safe-area-inset-bottom, 0px));
     background: linear-gradient(to top, var(--bg) 62%, transparent);
   }
-}
-
-@media (min-width: 601px) {
-  .brand { font-size: 20px; }
-  .dot { width: 18px; height: 18px; }
-  .top-tag { font-size: 14px; }
-  .goal { padding: 10px 16px; font-size: 14px; }
 }
 
 
