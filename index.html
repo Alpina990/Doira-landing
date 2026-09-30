@@ -95,7 +95,7 @@ body {
 /* ---------- top ---------- */
 .top {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: clamp(18px, 2vw, 28px) clamp(20px, 4vw, 48px);
   display: flex;
@@ -111,7 +111,7 @@ body {
 /* ---------- hero ---------- */
 .hero {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1080px;
   flex: 1;
   margin: 0 auto;
   padding: clamp(18px, 2vh, 28px) clamp(20px, 4vw, 48px);
@@ -222,7 +222,7 @@ h1 {
 
 .foot {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: clamp(20px, 2.5vh, 32px) clamp(20px, 4vw, 48px);
   text-align: center;
@@ -252,6 +252,10 @@ h1 {
     padding: 18px 16px calc(14px + env(safe-area-inset-bottom, 0px));
     background: linear-gradient(to top, var(--bg) 62%, transparent);
   }
+}
+
+@media (min-width: 601px) {
+  .top { justify-content: center; gap: clamp(32px, 4vw, 64px); }
 }
 
 /* ---------- motion ---------- */
