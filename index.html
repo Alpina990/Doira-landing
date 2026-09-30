@@ -87,6 +87,7 @@ body {
   font-family: var(--f);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  zoom: var(--page-zoom, 1);
 }
 
 /* ---------- top ---------- */
@@ -236,7 +237,7 @@ h1 { font-size: clamp(2.2rem, 10vw, 2.9rem); }
 .goal { padding: 8px 12px; font-size: 13px; }
 .cta-bar {
   position: sticky;
-  bottom: 0;
+  bottom: 8px;
   z-index: 2;
   width: calc(100% + 32px);
   margin: -6px -16px 0;
@@ -295,5 +296,16 @@ h1 { font-size: clamp(2.2rem, 10vw, 2.9rem); }
 
 <footer class="foot">© 2026 Doira · Dumaloq video orqali networking</footer>
 
+<script>
+  (() => {
+    const root = document.documentElement;
+    const applyPageZoom = () => {
+      const zoom = Math.min(2, Math.max(1, window.innerWidth / 800));
+      root.style.setProperty("--page-zoom", zoom.toFixed(3));
+    };
+    applyPageZoom();
+    window.addEventListener("resize", applyPageZoom);
+  })();
+</script>
 </body>
 </html>
