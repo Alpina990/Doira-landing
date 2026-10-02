@@ -10,17 +10,17 @@ const cssBlock = selector => {
   return match[1];
 };
 
-test('Boshlash button is a proportional 169% version of the source button', () => {
+test('Boshlash button is a proportional 118.3% version of the source button', () => {
   const button = cssBlock('.btn');
-  assert.match(button, /gap:\s*16\.9px/);
-  assert.match(button, /padding:\s*21\.97px 47\.32px/);
-  assert.match(button, /font:\s*600 27\.04px\/1 var\(--f\)/);
+  assert.match(button, /gap:\s*11\.83px/);
+  assert.match(button, /padding:\s*15\.38px 33\.12px/);
+  assert.match(button, /font:\s*600 18\.93px\/1 var\(--f\)/);
   assert.doesNotMatch(button, /\bwidth:/);
   assert.doesNotMatch(button, /min-height:/);
 
   const icon = cssBlock('.btn svg');
-  assert.match(icon, /width:\s*28\.73px/);
-  assert.match(icon, /height:\s*28\.73px/);
+  assert.match(icon, /width:\s*20\.11px/);
+  assert.match(icon, /height:\s*20\.11px/);
 });
 
 test('large-screen scale is derived from the real layout size', () => {
